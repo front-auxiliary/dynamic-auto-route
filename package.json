@@ -1,0 +1,20 @@
+{
+  "name": "auto-dynamic-routes",
+  "version": "2.2.2",
+  "repository" :{ 
+    "type" : "git",
+    "url" : "https://github.com/suwusu/auto-dynamic-route"
+  },
+  "description": "npm run build问题",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "route",
+    "auto",
+    "dynamic"
+  ],
+  "author": "wusuling",
+  "license": "ISC"
+}
