@@ -36,14 +36,12 @@ let params ={
 }
 ```
 
-
 ## 引用
 
 webpack.config.js
 
 ```
 const AutoDynamicPlugin = require('auto-dynamic-routes');  
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -57,15 +55,13 @@ module.exports = {
     new AutoDynamicPlugin({filterSuffix:'index.vue,detail.vue,.js'})
   ]
 }
-
 ``` 
-
 
 ## 生成的路由格式
 
 ```
-目前格式：
-  export default {routes:[{
+//目前格式：
+export default {routes:[{
     path:'/wslceye/:ww/detail',
     name:'wslceye-ww-detail',
     component:()=>import('components/wslceye/_ww/detail')
