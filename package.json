@@ -1,14 +1,15 @@
 {
   "name": "auto-dynamic-routes",
   "version": "2.2.2",
-  "repository" :{ 
-    "type" : "git",
-    "url" : "https://github.com/suwusu/auto-dynamic-route"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suwusu/auto-dynamic-route"
   },
   "description": "npm run build问题",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir  lib"
   },
   "keywords": [
     "route",
@@ -16,5 +17,13 @@
     "dynamic"
   ],
   "author": "wusuling",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
+  }
 }
