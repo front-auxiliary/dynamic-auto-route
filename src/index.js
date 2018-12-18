@@ -4,6 +4,7 @@ const chokidar = require('chokidar');
 const path = require('path');
 const env = process.env.NODE_ENV;
 const autoRoute = new generateRoute();
+
 class FileListPlugin {
   constructor(options) {
     this.newParams = options || {};
@@ -19,10 +20,11 @@ class FileListPlugin {
       filterSuffix: '.vue'
     }
     let params = Object.assign(this.newParams, defaultParams);
+    autoRoute.setData(params);
     this.auto(params)
   }
   auto(params) {
-    autoRoute.render(params)
+    autoRoute.render()
     if (env === 'production') {
       return;
     }
@@ -30,19 +32,19 @@ class FileListPlugin {
     //文件变动监听(增加、删除文件夹，增加、删除文件，文件内容发生变化)
     templateFile.on('ready', () => {
       templateFile.on('add', (path) => {
-        autoRoute.render(params);
+        autoRoute.render();
       });
       templateFile.on('unlink', (path) => {
-        autoRoute.render(params);
+        autoRoute.render();
       });
       templateFile.on('addDir', (path) => {
-        autoRoute.render(params);
+        autoRoute.render();
       });
       templateFile.on('unlinkDir', (path) => {
-        autoRoute.render(params);
+        autoRoute.render();
       });
       templateFile.on('change', (path) => {
-        autoRoute.render(params);
+        autoRoute.render();
       });
     })
 
