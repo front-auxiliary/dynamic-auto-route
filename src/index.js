@@ -50,7 +50,7 @@ class FileListPlugin {
 
   }
 }
-module.exports = FileListPlugin;
+export default FileListPlugin;
 
 
 

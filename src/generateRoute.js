@@ -119,4 +119,4 @@ class generateRoute {
   }
 }
 
-module.exports = generateRoute;
+export default generateRoute;
