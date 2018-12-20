@@ -7,9 +7,15 @@ const path = require('path');
 const env = process.env.NODE_ENV;
 var generateRoute=new render();
 
+var FileListPlugin=function(options){
+    this.defaultParams={};
+    this.newParams=options;
+}
+
 //新旧参数对比
-function compareParams(newParams,oldParams){
-  let params=newParams?newParams:{};
+FileListPlugin.prototype.compareParams=function(newParams,oldParams) {
+  var typeStr =Object.prototype.toString.call(newParams);
+  var params=typeStr==='[object Object]'?newParams:{};
   for(let item in oldParams){
       if(!params[item]){
         params[item]=oldParams[item];
@@ -18,9 +24,8 @@ function compareParams(newParams,oldParams){
    return params;
 }
 
-
 //监听调用
-function auto(params) {
+FileListPlugin.prototype.monitorRoute=function(params){
     generateRoute.setOptions(params);
     generateRoute.render();
   if(env === 'production'){
@@ -47,22 +52,18 @@ function auto(params) {
   })
 }
 
-
-//webpack插件(es5)
-function FileListPlugin (options) {
-    this.newParams = options;
-}
-  
+//插件
 FileListPlugin.prototype.apply = function (compiler) {
-    var defaultParams={
-      fileName:'newRouter.js',
-      inPath:path.resolve(compiler.options.context,'./src/pages'),
-      outPath:path.resolve(compiler.options.context,'./src/router'),
-      filterSuffix:'index.vue'
-    }
-    let params=compareParams(this.newParams,defaultParams);
-    auto(params)
+  this.defaultParams={
+    fileName:'newRouter.js',
+    inPath:path.resolve(compiler.options.context,'./src/pages'),
+    outPath:path.resolve(compiler.options.context,'./src/router'),
+    filterSuffix:'.vue'
+  }
+  var params=this.compareParams(this.newParams,this.defaultParams);
+  this.monitorRoute(params);
 }
+
 module.exports = FileListPlugin;
   
 

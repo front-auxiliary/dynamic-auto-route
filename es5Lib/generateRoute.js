@@ -1,3 +1,4 @@
+"use strict";
 const fs = require('fs');
 const nodePath = require('path');
 //windows平台
